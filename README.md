@@ -54,11 +54,29 @@ Atomic behaviors:
     +-+-+-+
     |_|_|_|
 
-
-
 	- Player is dead or not
+✔Clear spot at [1, 1] -> dead
+✔Clear spot at [2, 2] -> not dead
 
-	- Player wins
+	🎈- Player wins
+    +-+-+
+    2|2|1
+    +-+-+
+    *|*|2  --> wins
+    +-+-+
+    3|*|2
+
+
+    +-+-+
+    2|2|_
+    +-+-+
+    *|*|2  --> doesnt win
+    +-+-+
+    3|*|2
+
+
+
+
 		○ All the squared are cleared
 
 	- Guards:

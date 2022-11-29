@@ -49,21 +49,35 @@ function playerMarksABomb(playersView, coordinatesOfBomb) {
   return newPlayersView;
 }
 
+function extractRowOfActualBoard(rowIndex, actualBoard) {
+  return actualBoard[rowIndex];
+}
+function extractSquareOfActualBoard(
+  columnindex,
+  rowInActualBoardThatIsCleared
+) {
+  return rowInActualBoardThatIsCleared[columnindex];
+}
 function adjustNewRowForClearingSquare(
   rowIndex,
   rowInWhichSquareIsCleared,
   columnindex,
   xCoordinate,
-  cell,
+  square,
   actualBoard,
   newRow
 ) {
   if (rowIndex === rowInWhichSquareIsCleared && columnindex === xCoordinate) {
-    const rowInActualBoardThatIsCleared = actualBoard[rowIndex];
-    const cellInActualBoardThatIsCleared =
-      rowInActualBoardThatIsCleared[columnindex];
-    newRow.push(cellInActualBoardThatIsCleared);
-  } else newRow.push(cell);
+    const rowInActualBoardThatIsCleared = extractRowOfActualBoard(
+      rowIndex,
+      actualBoard
+    );
+    const squareInActualBoardThatIsCleared = extractSquareOfActualBoard(
+      columnindex,
+      rowInActualBoardThatIsCleared
+    );
+    newRow.push(squareInActualBoardThatIsCleared);
+  } else newRow.push(square);
 }
 function playerClearsASquare(
   playersView,
@@ -96,8 +110,24 @@ function playerClearsASquare(
   return newPlayersView;
 }
 
+function doesPlayerDie(actualBoard, coordinatesOfSquareToClear) {
+  const xCoordinate = returnXCoordinates(coordinatesOfSquareToClear);
+  const yCoordinate = returnYCoordinates(coordinatesOfSquareToClear);
+  const rowInWhichSquareIsCleared = rowInWhichActionIsPerformed(yCoordinate);
+  const rowInActualBoardThatIsCleared = extractRowOfActualBoard(
+    rowInWhichSquareIsCleared,
+    actualBoard
+  );
+  const squareInActualBoardThatIsCleared = extractSquareOfActualBoard(
+    xCoordinate,
+    rowInActualBoardThatIsCleared
+  );
+  return squareInActualBoardThatIsCleared === "x";
+}
+
 module.exports = {
   playerMarksABomb,
   adjustNewRow: adjustNewRowForFlaggingBomb,
   playerClearsASquare,
+  doesPlayerDie,
 };
