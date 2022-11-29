@@ -1,7 +1,9 @@
+/* eslint-disable no-shadow */
 const {
   playerMarksABomb,
   playerClearsASquare,
   doesPlayerDie,
+  doesPlayerWin,
 } = require("../src/template");
 
 describe("This test suite tests the game of mine sweeper. The goal of the game is to clear the board. Once the board is cleared and you haven't stepped on a mine, you win the game", () => {
@@ -78,6 +80,25 @@ describe("This test suite tests the game of mine sweeper. The goal of the game i
       expect(doesPlayerDie(actualBoard, coordinatesOfSquareToClear)).toEqual(
         false
       );
+    });
+  });
+  describe("If a player chooses to clear a square, and this action causes all squares to be cleared, the player wins", () => {
+    it("Player has cleared all squares -> wins", () => {
+      const playersView = [
+        ["2", "2", "1"],
+        ["_", "_", "2"],
+        ["3", "_", "2"],
+      ];
+      expect(doesPlayerWin(actualBoard, playersView)).toEqual(true);
+    });
+
+    it("Player has cleared all squares but the top right corner -> doesnt win", () => {
+      const playersView = [
+        ["2", "2", "_"],
+        ["_", "_", "2"],
+        ["3", "_", "2"],
+      ];
+      expect(doesPlayerWin(actualBoard, playersView)).toEqual(false);
     });
   });
 });

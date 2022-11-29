@@ -125,9 +125,16 @@ function doesPlayerDie(actualBoard, coordinatesOfSquareToClear) {
   return squareInActualBoardThatIsCleared === "x";
 }
 
+function doesPlayerWin(actualBoard, playersView) {
+  const actualBoardFiltered = actualBoard.filter((square) => square !== "x");
+  const playersViewFiltered = playersView.filter((square) => square !== "_");
+  return actualBoardFiltered === playersViewFiltered;
+}
+
 module.exports = {
   playerMarksABomb,
   adjustNewRow: adjustNewRowForFlaggingBomb,
   playerClearsASquare,
   doesPlayerDie,
+  doesPlayerWin,
 };
