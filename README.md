@@ -11,7 +11,7 @@ Facts:
 	- Players view as a variable
 
 Atomic behaviors:
-	- Play a marker
+	- Mark a bomb
     Players view:
     +-+-+-+
     |_|_|_|
@@ -20,7 +20,7 @@ Atomic behaviors:
     +-+-+-+
     |_|_|_|
 
-   🎈 Player plays middle:
+   ✔ Player plays middle:
     +-+-+-+
     |_|_|_|
     +-+-+-+
@@ -28,20 +28,36 @@ Atomic behaviors:
     +-+-+-+
     |_|_|_|
 
-    Player bottom left:
+    ✔Player middle left:
     +-+-+-+
     |_|_|_|
     +-+-+-+
-    |_|_|_|
+    |x|_|_|
     +-+-+-+
-    |X|_|_|
+    |_|_|_|
 
+
+    - Clear a spot
+    ✔bottom left:
+    +-+-+-+
+    |_|_|_|
+    +-+-+-+
+    |_|_|_|
+    +-+-+-+
+    |x|_|_|
+
+    ✔top right:
+    +-+-+-+
+    |_|_|1|
+    +-+-+-+
+    |_|_|_|
+    +-+-+-+
+    |_|_|_|
 
 
 
 	- Player is dead or not
-	- Mark a bomb
-		○ Effect of players move is reflected in players View
+
 	- Player wins
 		○ All the squared are cleared
 
